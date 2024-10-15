@@ -16,6 +16,3 @@ shared-service-stop:
 
 shared-service-logs:
 	docker-compose --project-directory $(CWD)/ -f $(CWD)/docker-compose-shared-services.yml logs -f
-
-shared-service-setup-db:
-	docker-compose --project-directory $(CWD) -f $(CWD)docker-compose.yml exec mariadb sh /tmp/initdb/simple-db.sh
