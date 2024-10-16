@@ -17,10 +17,10 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "Jtrw\\Make\\MakefileInstaller::install"
+            "php scripts/install.php"
         ],
         "post-update-cmd": [
-            "Jtrw\\Make\\MakefileInstaller::install"
+            "php scripts/install.php"
         ]
     },
     "extra": {
