@@ -11,8 +11,11 @@
     ],
     "require": {},
     "scripts": {
+        "auto-scripts": {
+            "copy:makefile": "php -r \"if (!file_exists('Makefile')) { copy('vendor/jtrw/php-make/Makefile_Template.mk', 'Makefile'); }\""
+        },
         "post-install-cmd": [
-           "php -r \"if (!file_exists('Makefile')) { copy('vendor/jtrw/php-make/Makefile_Template.mk', 'Makefile'); }\""
+           "@auto-scripts"
         ]
     }
 }
