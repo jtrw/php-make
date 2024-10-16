@@ -10,9 +10,22 @@
         }
     ],
     "require": {},
+    "autoload": {
+        "psr-4": {
+            "jtrw\\Make\\": "src/"
+        }
+    },
     "scripts": {
         "post-install-cmd": [
-            "php -r \"$source = __DIR__ . '/Makefile_Template.mk'; $destination = getcwd() . '/Makefile'; if (!file_exists($destination) && file_exists($source)) { copy($source, $destination); }\""
+            "Jtrw\\Make\\MakefileInstaller::install"
+        ],
+        "post-update-cmd": [
+            "Jtrw\\Make\\MakefileInstaller::install"
         ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.0.x-dev"
+        }
     }
 }
