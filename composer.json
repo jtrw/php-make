@@ -11,11 +11,8 @@
     ],
     "require": {},
     "scripts": {
-        "auto-scripts": {
-            "copy:makefile": "php -r \"if (!file_exists('Makefile')) { copy('vendor/jtrw/php-make/Makefile_Template.mk', 'Makefile'); }\""
-        },
         "post-install-cmd": [
-           "@auto-scripts"
+            "php -r \"$source = __DIR__ . '/Makefile_Template.mk'; $destination = getcwd() . '/Makefile'; if (!file_exists($destination) && file_exists($source)) { copy($source, $destination); }\""
         ]
     }
 }
