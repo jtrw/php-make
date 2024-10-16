@@ -1,0 +1,19 @@
+{
+    "name": "jtrw/php-make",
+    "description": "Simple collections of make commands to increase productivity",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nil Borodulia",
+            "email": "nil.borodulia@gmail.com"
+        }
+    ],
+    "require": {},
+    "scripts": {
+        //copy Makefile to root directory  if file is not exist afer installed package
+        "post-install-cmd": [
+           "php -r \"if (!file_exists('Makefile')) { copy('vendor/jtrw/php-make/Makefile_Template.mk', 'Makefile'); }\""
+        ]
+    }
+}
