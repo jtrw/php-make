@@ -17,9 +17,11 @@
     },
     "scripts": {
         "post-install-cmd": [
+            "echo 'Installing post-install-cmd jtrw/php-make...'",
             "php scripts/install.php"
         ],
         "post-update-cmd": [
+            "echo 'Updating post-install-cmd jtrw/php-make...'",
             "php scripts/install.php"
         ]
     },
