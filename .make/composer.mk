@@ -1,4 +1,4 @@
-## --- 🚀 Composer ----------------------------------------------------
+## --- 🙆 Composer ----------------------------------------------------
 .PHONY: composer-install
 composer-install: ## Install project dependencies
 	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc 'composer install --ignore-platform-reqs'

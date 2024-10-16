@@ -1,3 +1,4 @@
+## --- 🐳 Docker commands --------------------------------------------------
 .PHONY: logs
 logs: ## look for service logs
 	docker-compose logs -f $(RUN_ARGS)
@@ -13,7 +14,7 @@ docker-remove: ## remove all containers
 	@$(if $(strip $(CONTAINERS)), echo Going to remove all containers: $(shell docker rm $(CONTAINERS)), echo No containers)
 
 .PHONY: docker-remove-volumes
-docker-remove-volumes: ## remove project docker vo
+docker-remove-volumes: ## remove project docker volumes
 	$(eval VOLUMES = $(shell (docker volume ls --filter name=$(CUR_DIR) -q)))
 	$(if $(strip $(VOLUMES)), echo Going to remove volumes $(shell docker volume rm $(VOLUMES)), echo No active volumes)
 

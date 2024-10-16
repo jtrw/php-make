@@ -1,3 +1,4 @@
+## --- 📘 Static analysis --------------------------------------------------
 .PHONY: lint layer style coding-standards
 static-analysis: lint layer style coding-standards ## Run phpstan, deprac, easycoding standarts code static analysis
 

@@ -1,3 +1,4 @@
+## --- ⛁ Migrations for Laravel --------------------------------------------------
 ifeq ($(APP_ENV),$(filter $(APP_ENV),production))
 	IS_PROD = true
 endif
