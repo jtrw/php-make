@@ -1,3 +1,4 @@
+## -- 🛢️ Migrations for Symfony -------------------------------------------------
 ifeq ($(APP_ENV),$(filter $(APP_ENV),prod))
 	IS_PROD = true
 endif
