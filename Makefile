@@ -38,7 +38,7 @@ stop-all: stop stop-services ## stop full project environment
 
 .PHONY: php-shell
 php-shell: ## PHP shell
-	docker-compose run --rm php-fpm sh -l
+	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -l
 
 
 
