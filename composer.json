@@ -17,6 +17,7 @@
     },
     "scripts": {
         "post-install-cmd": [
+            "echo 'Post-install-cmd executed!'",
             "Jtrw\\Make\\MakefilePlugin::installMakefile"
         ]
     },
