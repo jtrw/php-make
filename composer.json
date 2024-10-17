@@ -9,15 +9,12 @@
             "email": "nil.borodulia@gmail.com"
         }
     ],
-    "require": {
-        "composer-plugin-api": "*"
-    },
-    "require-dev": {
-        "composer/composer": "^2.0"
-    },
+    "bin": [
+        "bin/php-make"
+    ],
     "scripts": {
-        "post-install-cmd": [
-            "Jtrw\\Make\\MakefilePlugin::installMakefile"
+        "php-make": [
+            "@php ./bin/php-make"
         ]
     },
     "autoload": {
@@ -25,7 +22,7 @@
             "Jtrw\\Make\\": "src/"
         }
     },
-    "extra": {
-        "class": "Jtrw\\Make\\MakefilePlugin"
+    "scripts-descriptions": {
+        "php-make": "Copy makefile to the project root directory"
     }
 }

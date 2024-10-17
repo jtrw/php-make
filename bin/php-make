@@ -1,12 +1,15 @@
+#!/usr/bin/env php
+
 <?php
 
+/**
+ * PHP Makefile Copier to the project root.
+ * @author Nil Borodulia <nil.borodulia@gmail.com>
+ * @license MIT
+ */
 
 $source = __DIR__.'/../Makefile_Template.mk';
 $destination = getcwd().'/Makefile';
-
-echo "Copying Makefile to the project root...\n";
-echo "Source: $source\n";
-echo "Destination: $destination\n";
 
 if (!file_exists($destination)) {
     if (copy($source, $destination)) {
