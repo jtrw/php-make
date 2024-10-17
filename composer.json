@@ -1,7 +1,7 @@
 {
     "name": "jtrw/php-make",
     "description": "Simple collections of make commands to increase productivity",
-    "type": "library",
+    "type": "composer-plugin",
     "license": "MIT",
     "authors": [
         {
@@ -9,23 +9,23 @@
             "email": "nil.borodulia@gmail.com"
         }
     ],
-    "require": {},
-    "autoload": {
-        "psr-4": {
-            "jtrw\\Make\\": "src/"
-        }
+    "require": {
+        "composer-plugin-api": "*"
+    },
+    "require-dev": {
+        "composer/composer": "^2.0"
     },
     "scripts": {
         "post-install-cmd": [
-            "php scripts/install.php"
-        ],
-        "post-update-cmd": [
-            "php scripts/install.php"
+            "Jtrw\\Make\\MakefilePlugin::installMakefile"
         ]
     },
-    "extra": {
-        "branch-alias": {
-            "dev-main": "1.0.x-dev"
+    "autoload": {
+        "psr-4": {
+            "Jtrw\\Make\\": "src/"
         }
+    },
+    "extra": {
+        "class": "Jtrw\\Make\\MakefilePlugin"
     }
 }
