@@ -1,7 +1,7 @@
 {
     "name": "jtrw/php-make",
     "description": "Simple collections of make commands to increase productivity",
-    "type": "composer-plugin",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
