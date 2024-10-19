@@ -2,8 +2,7 @@
 
 Useful PHP Makefile for PHP projects.
 Simple collections of make commands to increase productivity.
-
-Most of the commands are related to Docker projects.
+In this project I collect useful commands for PHP projects. Most of the commands are related to Docker projects.
 
 ## Install
 
@@ -17,7 +16,12 @@ include .make/composer.mk
 include .make/static-analysis.mk
 include .make/migrations-symfony.mk
 ```
-3. Use `make help` to see all available commands.
+3. Add to your .env file variable `PHP_FPM_NAME` and `APP_ENV` for example:
+```dotenv
+PHP_FPM_NAME=php-fpm
+APP_ENV=dev
+```
+4. Use `make help` to see all available commands.
 
 ## Usage
 
@@ -25,3 +29,13 @@ include .make/migrations-symfony.mk
 
 File `composer.mk` contains commands for composer.
 
+#### composer-install
+```shell
+make composer-install
+```
+
+
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
