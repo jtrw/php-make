@@ -25,6 +25,8 @@ APP_ENV=dev
 
 ## Usage
 
+image: ![make help](/docs/make-help.jpg)
+
 ### composer.mk
 
 File `composer.mk` contains commands for composer.
