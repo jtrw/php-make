@@ -27,15 +27,15 @@ APP_ENV=dev
 
 image: ![make help](/docs/make-help.jpg)
 
-### composer.mk
+## Description
 
 File `composer.mk` contains commands for composer.
-
-#### composer-install
-```shell
-make composer-install
-```
-
+File `docker-compose-shared-services.mk` contains commands for docker-compose.
+File `docker.mk` contains commands for docker.
+File `migrations-symfony.mk` contains commands for Symfony migrations.
+File `migrations-laravel.mk` contains commands for Laravel migrations.
+File `static-analysis.mk` contains commands for static analysis.
+File `utils.mk` contains useful commands.
 
 
 ## License
