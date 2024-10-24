@@ -30,7 +30,11 @@ define print
  esac
 endef
 
-test_colors:
-	$(call print_info, "That\'s an information only.")
-	$(call print_warning, "That\'s a warning. Maybe you should do something.")
-	$(call print_error, "That\'s an error. Do something! Now!")
+print_error:
+	$(call print_error, "$(RUN_ARGS)")
+
+print_warning:
+	$(call print_warning, "$(RUN_ARGS)")
+
+print_info:
+	$(call print_info, "$(RUN_ARGS)")
