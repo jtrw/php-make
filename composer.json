@@ -1,6 +1,6 @@
 {
     "name": "jtrw/php-make",
-    "description": "Simple collections of make commands to increase productivity",
+    "description": "Simple collections of make commands to increase productivity. This package gives you make commands to run your project easily. You can also customize the make commands to fit your project needs. Make commands o help work with docker, git, composer, migrations symfony, migrations laravel, tests, static analysis, and more.",
     "type": "library",
     "license": "MIT",
     "authors": [
