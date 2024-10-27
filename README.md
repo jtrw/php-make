@@ -9,12 +9,12 @@ In this project I collect useful commands for PHP projects. Most of the commands
 2. `/vendor/bin/php-make` for copy template Makefile to your project if Makefile exists it will be not overwritten.
 3. If you use your own Makefile, you can add the following line to your Makefile:
 ```makefile
-include .make/utils.mk
-include .make/colours.mk
-include .make/docker-compose-shared-services.mk
-include .make/composer.mk
-include .make/static-analysis.mk
-include .make/migrations-symfony.mk
+include vendor/jtrw/php-make/.make/utils.mk
+include vendor/jtrw/php-make/.make/colours.mk
+include vendor/jtrw/php-make/.make/docker-compose-shared-services.mk
+include vendor/jtrw/php-make/.make/composer.mk
+include vendor/jtrw/php-make/.make/static-analysis.mk
+include vendor/jtrw/php-make/.make/migrations-symfony.mk
 ```
 4. Add to your .env file variable `PHP_FPM_NAME` and `APP_ENV` for example:
 ```dotenv
