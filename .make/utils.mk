@@ -34,4 +34,8 @@ help: ## print this help message
 
 .PHONY: console
 console: ## execute symfony console command
-	docker-compose run --rm php sh -lc "./bin/console $(RUN_ARGS)"
+	docker-compose run --rm $(PHP_FPM_NAME) sh -lc "./bin/console $(RUN_ARGS)"
+
+.PHONY: artisan
+artisan: ## execute laravel artisan command
+	docker-compose run --rm $(PHP_FPM_NAME) sh -lc "php artisan $(RUN_ARGS)"
