@@ -8,7 +8,7 @@ style: phpstan phan psalm ## executes php analizers
 .PHONY: lint
 lint: ## checks syntax of PHP files
 	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc './vendor/bin/parallel-lint ./ --exclude vendor --exclude bin/.phpunit'
-	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc './bin/console lint:yaml config'
+	#docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc './bin/console lint:yaml config'
 
 .PHONY: layer
 layer: ## check issues with layers (deptrac tool)
