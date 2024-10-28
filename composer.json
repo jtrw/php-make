@@ -9,6 +9,9 @@
             "email": "nil.borodulia@gmail.com"
         }
     ],
+    "require": {
+        "php": ">=7.1"
+    },
     "bin": [
         "bin/php-make"
     ],
