@@ -14,7 +14,12 @@ build_name = application-$(version)
 fix-permission: ## fix permission for docker env
 	echo chown -R $(shell whoami):$(shell whoami) *
 	echo chown -R $(shell whoami):$(shell whoami) .docker/*
-	echo chmod +x ./bin/console
+	ifeq ($(FRAMEWORK_NAME),symfony)
+		echo chmod +x ./bin/console
+	endif
+	ifeq ($(FRAMEWORK_NAME),laravel)
+		echo chmod +x ./artisan
+	endif
 
 wait:
 ifeq ($(OS),Windows_NT)
