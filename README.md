@@ -6,7 +6,7 @@ In this project I collect useful commands for PHP projects. Most of the commands
 
 ## Install
 1. `composer require jtrw/php-make`
-2. `/vendor/bin/php-make` for copy template Makefile to your project if Makefile exists it will be not overwritten.
+2. Run `/vendor/bin/php-make` command for copy template Makefile to your project if Makefile exists it will be not overwritten.
 3. If you use your own Makefile, you can add the following line to your Makefile:
 ```makefile
 include vendor/jtrw/php-make/.make/utils.mk
