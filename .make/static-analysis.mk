@@ -7,12 +7,14 @@ style: phpstan phan psalm ## executes php analizers
 
 .PHONY: lint
 lint: ## checks syntax of PHP files
-	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc './vendor/bin/parallel-lint ./ --exclude vendor --exclude bin/.phpunit'
+	CMD=$(if $(RUN_ARGS),$(RUN_ARGS),'./vendor/bin/parallel-lint ./ --exclude vendor --exclude bin/.phpunit') && \
+	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "$$CMD"
 	#docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc './bin/console lint:yaml config'
 
 .PHONY: layer
 layer: ## check issues with layers (deptrac tool)
-	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc './vendor/bin/deptrac analyze --formatter-graphviz=0'
+	CMD=$(if $(RUN_ARGS),$(RUN_ARGS),'./vendor/bin/deptrac analyze --formatter-graphviz=0') && \
+	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "$$CMD"
 
 .PHONY: coding-standards
 coding-standards: ## run check and validate code standards tests
