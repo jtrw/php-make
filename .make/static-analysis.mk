@@ -18,43 +18,53 @@ layer: ## check issues with layers (deptrac tool)
 
 .PHONY: coding-standards
 coding-standards: ## run check and validate code standards tests
-	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc './vendor/bin/ecs check src tests'
+	CMD=$(if $(RUN_ARGS),$(RUN_ARGS),'./vendor/bin/ecs check src tests') && \
+	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "$$CMD"
 #	docker-compose run --rm --no-deps php sh -lc './vendor/bin/phpmd src/ text phpmd.xml' #todo: uncomment when phpmd supports php8.0
 
 .PHONY: coding-standards-fixer
 coding-standards-fixer: ## run code standards fixer
-	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc './vendor/bin/ecs check src tests --fix'
+	CMD=$(if $(RUN_ARGS),$(RUN_ARGS),'./vendor/bin/ecs check src tests --fix') && \
+	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "$$CMD"
 
 tests-unit: ## Run unit-tests suite
-	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc 'vendor/bin/phpunit --configuration /app/phpunit.xml.dist'
+	CMD=$(if $(RUN_ARGS),$(RUN_ARGS),'vendor/bin/phpunit --configuration /app/phpunit.xml.dist') && \
+	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "$$CMD"
 
 tests-integration: ## Run integration-tests suite
-	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc 'vendor/bin/phpunit --configuration /app/phpunit.func.xml'
+	CMD=$(if $(RUN_ARGS),$(RUN_ARGS),'vendor/bin/phpunit --configuration /app/phpunit.func.xml') && \
+	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "$$CMD"
 
 .PHONY: infection
 infection: ## executes mutation framework infection
-	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc './vendor/bin/infection --min-msi=70 --min-covered-msi=80 --threads=$(JOBS) --coverage=var/report'
+	CMD = $(if $(RUN_ARGS),$(RUN_ARGS),'./vendor/bin/infection --min-msi=70 --min-covered-msi=80 --threads=$(JOBS) --coverage=var/report') && \
+	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "$$CMD"
 
 .PHONY: phpstan
 phpstan: ## phpstan - PHP Static Analysis Tool
-	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc './vendor/bin/phpstan analyse -l 6 -c phpstan.neon src tests'
+	CMD=$(if $(RUN_ARGS),$(RUN_ARGS),'./vendor/bin/phpstan analyse -l 6 -c phpstan.neon src tests') && \
+	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "$$CMD"
 
 .PHONY: psalm
 psalm: ## psalm is a static analysis tool for finding errors in PHP applications
-	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc './vendor/bin/psalm --config=psalm.xml'
+	CMD = $(if $(RUN_ARGS),$(RUN_ARGS),'./vendor/bin/psalm --config=psalm.xml') && \
+	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "$$CMD"
 
 .PHONY: phan
 phan: ## phan is a static analyzer for PHP that prefers to minimize false-positives.
-	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc 'PHAN_DISABLE_XDEBUG_WARN=1 PHAN_ALLOW_XDEBUG=0 php -d zend.enable_gc=0 ./vendor/bin/phan --config-file .phan/config.php --require-config-exists'
+	CMD = $(if $(RUN_ARGS),$(RUN_ARGS),'PHAN_DISABLE_XDEBUG_WARN=1 PHAN_ALLOW_XDEBUG=0 php -d zend.enable_gc=0 ./vendor/bin/phan --config-file .phan/config.php --require-config-exists') && \
+	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "$$CMD"
 
 .PHONY: security-tests
 security-tests: ## The SensioLabs Security Checker
-	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc './vendor/bin/security-checker security:check'
+	CMD = $(if $(RUN_ARGS),$(RUN_ARGS),'./vendor/bin/security-checker security:check') && \
+	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "$$CMD"
 
 
 .PHONY: code-coverage
 code-coverage: ## Pcov code coverage
-	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc 'php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude="~vendor~" ./vendor/bin/phpunit --coverage-text'
+	CMD = $(if $(RUN_ARGS),$(RUN_ARGS),'php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude="~vendor~" ./vendor/bin/phpunit --coverage-text') && \
+	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "$$CMD"
 
 .PHONY: phpcs
 phpcs: ## Check style by phpcs. Use --ignore to exclude directories from check (e.g. make phpcs --ignore='src/IgnoreModule') --standard to set ruleset (e.g. make phpcs --standard=.rule/ruleset.xml)
