@@ -32,9 +32,11 @@ endif
 help_simple:
 	@cat $(MAKEFILE_LIST) | grep -e "^[a-zA-Z_\-]*: *.*## *" | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
+FILTERED_MAKEFILES := $(filter-out .env,$(MAKEFILE_LIST))
+
 .PHONY: help
-help: ## find in MAKEFILE_LIST files remove .env
-	@find . -type f \( -name 'Makefile' -o -name '*.mk' \) -exec cat {} + | \
+help: ## help
+	@cat $(filter-out .env,$(MAKEFILE_LIST)) | \
 	grep -E '(^[a-zA-Z0-9_-]+:.*?##.*$$)|(^##)' | \
 	awk 'BEGIN {FS = ":.*?## "}{printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | \
 	sed -e 's/\[32m##/[33m/'
