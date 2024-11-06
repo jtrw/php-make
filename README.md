@@ -1,6 +1,7 @@
 # PHP Make
 
 Useful PHP Makefile for PHP projects.
+Why Makefile? Because it's simple and easy to use and it's a standard tool for Unix systems.
 Simple collections of make commands to increase productivity.
 In this project I collect useful commands for PHP projects. Most of the commands are related to Docker projects.
 
