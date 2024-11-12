@@ -2,7 +2,7 @@
 ifeq ($(OS),Windows_NT)
     CWD := $(lastword $(dir $(realpath $(MAKEFILE_LIST)/../)))
 else
-    CWD := $(abspath $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST))))/../))/
+    CWD := $(abspath $(patsubst %/,%,$(dir $(abspath $(firstword $(MAKEFILE_LIST))))/../))/
 endif
 
 shared-service-start: ## up shared services
