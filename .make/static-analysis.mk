@@ -37,7 +37,7 @@ tests-integration: ## Run integration-tests suite
 
 .PHONY: infection
 infection: ## executes mutation framework infection
-	CMD = $(if $(RUN_ARGS),$(RUN_ARGS),'--min-msi=70 --min-covered-msi=80 --threads=$(JOBS) --coverage=var/report') && \
+	CMD=$(if $(RUN_ARGS),$(RUN_ARGS),'--min-msi=70 --min-covered-msi=80 --threads=$(JOBS) --coverage=var/report') && \
 	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "./vendor/bin/infection $$CMD"
 
 .PHONY: phpstan
@@ -47,23 +47,23 @@ phpstan: ## phpstan - PHP Static Analysis Tool
 
 .PHONY: psalm
 psalm: ## psalm is a static analysis tool for finding errors in PHP applications
-	CMD = $(if $(RUN_ARGS),$(RUN_ARGS),'--config=psalm.xml') && \
+	CMD=$(if $(RUN_ARGS),$(RUN_ARGS),'--config=psalm.xml') && \
 	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "./vendor/bin/psalm $$CMD"
 
 .PHONY: phan
 phan: ## phan is a static analyzer for PHP that prefers to minimize false-positives.
-	CMD = $(if $(RUN_ARGS),$(RUN_ARGS),'--config-file .phan/config.php --require-config-exists') && \
+	CMD=$(if $(RUN_ARGS),$(RUN_ARGS),'--config-file .phan/config.php --require-config-exists') && \
 	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "PHAN_DISABLE_XDEBUG_WARN=1 PHAN_ALLOW_XDEBUG=0 php -d zend.enable_gc=0 ./vendor/bin/phan $$CMD"
 
 .PHONY: security-tests
 security-tests: ## The SensioLabs Security Checker
-	CMD = $(if $(RUN_ARGS),$(RUN_ARGS),'./vendor/bin/security-checker security:check') && \
+	CMD=$(if $(RUN_ARGS),$(RUN_ARGS),'./vendor/bin/security-checker security:check') && \
 	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "$$CMD"
 
 
 .PHONY: code-coverage
 code-coverage: ## Pcov code coverage
-	CMD = $(if $(RUN_ARGS),$(RUN_ARGS),'php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude="~vendor~" ./vendor/bin/phpunit --coverage-text') && \
+	CMD=$(if $(RUN_ARGS),$(RUN_ARGS),'php -dpcov.enabled=1 -dpcov.directory=. -dpcov.exclude="~vendor~" ./vendor/bin/phpunit --coverage-text') && \
 	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "$$CMD"
 
 .PHONY: phpcs
