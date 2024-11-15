@@ -67,6 +67,6 @@ code-coverage: ## Pcov code coverage
 	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "$$CMD"
 
 .PHONY: phpcs
-phpcs: ## Check style by phpcs. Use --ignore to exclude directories from check (e.g. make phpcs --ignore='src/IgnoreModule') --standard to set ruleset (e.g. make phpcs --standard=.rule/ruleset.xml)
-	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "./vendor/bin/phpcs $(RUN_ARGS)"
+phpcs: ## Check style by phpcs. Use param args to set ruleset (e.g. make phpcs args='--standard=.rule/ruleset.xml')
+	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "./vendor/bin/phpcs $(args)"
 
