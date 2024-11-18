@@ -57,8 +57,8 @@ phan: ## phan is a static analyzer for PHP that prefers to minimize false-positi
 
 .PHONY: security-tests
 security-tests: ## The SensioLabs Security Checker
-	CMD=$(if $(RUN_ARGS),$(RUN_ARGS),'./vendor/bin/security-checker security:check') && \
-	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "$$CMD"
+	CMD=$(if $(RUN_ARGS),$(RUN_ARGS),'security:check') && \
+	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "./vendor/bin/security-checker $$CMD"
 
 
 .PHONY: code-coverage
@@ -68,5 +68,6 @@ code-coverage: ## Pcov code coverage
 
 .PHONY: phpcs
 phpcs: ## Check style by phpcs. Use param args to set ruleset (e.g. make phpcs args='--standard=.rule/ruleset.xml')
+	CMD=$(if $(args),$(args),'src/*') && \
 	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -lc "./vendor/bin/phpcs $(args)"
 
