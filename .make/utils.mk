@@ -48,3 +48,7 @@ console: ## execute symfony console command
 .PHONY: artisan
 artisan: ## execute laravel artisan command
 	docker-compose run --rm $(PHP_FPM_NAME) sh -lc "php artisan $(RUN_ARGS)"
+
+.PHONY: php-shell
+php-shell: ## PHP shell
+	docker-compose run --rm --no-deps $(PHP_FPM_NAME) sh -l
